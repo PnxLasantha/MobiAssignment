@@ -1,5 +1,6 @@
 package FunctionalBase;
 
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.http.Header;
 import io.restassured.response.Response;
@@ -11,10 +12,12 @@ public class ApiFunctionalBase {
      * @param contentType
      * @return
      */
+    Response res;
+    public Response doGetRequest(String url){
+       res = RestAssured.given().contentType(ContentType.JSON).get(url);
 
-    protected Response doGetRequest(String url, ContentType contentType){
 
-        return null;
+        return res;
     }
 
     /**
@@ -25,7 +28,7 @@ public class ApiFunctionalBase {
      * @param body
      * @return
      */
-    protected Response doPostRequest(String url , ContentType contentType,Header header, String body){
+    public Response doPostRequest(String url , ContentType contentType,Header header, String body){
         return  null;
     }
 }
