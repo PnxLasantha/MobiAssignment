@@ -1,6 +1,6 @@
 package base;
 
-import Utilities.TestDataFetch;
+import utilities.TestDataFetch;
 
 public class ApiBase {
 

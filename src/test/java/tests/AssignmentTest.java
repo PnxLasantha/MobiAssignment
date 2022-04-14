@@ -1,7 +1,7 @@
-package Tests;
+package tests;
 
-import FunctionalBase.ApiFunctionalBase;
 import base.ApiBase;
+import functionalbase.ApiFunctionalBase;
 import io.qameta.allure.Allure;
 import io.qameta.allure.AllureLifecycle;
 import io.qameta.allure.Description;
@@ -24,11 +24,11 @@ public class AssignmentTest extends ApiBase {
     AllureLifecycle lifecycle = Allure.getLifecycle();
 
 
-    @Test
+    @Test(description = "Get user details")
     @Description("Get User ID")
     public void getUserDataTest() {
         //setting up different name for allure report
-        lifecycle.updateTestCase(testResult -> testResult.setName("Get User ID"));
+        lifecycle.updateTestCase(testResult -> testResult.setName("Get user details"));
 
         url = baseUrl + "/users";
         res = apiBase.doGetRequest(url);
@@ -50,7 +50,7 @@ public class AssignmentTest extends ApiBase {
         res = apiBase.doGetRequest(url);
         jpath = res.jsonPath();
         resultList = jpath.param("userID", userID).get("findAll{it.userId == userID}.id");
-        Assert.assertFalse(resultList.isEmpty());
+        Assert.assertFalse(resultList.isEmpty(), "User doesn't created any posts");
 
     }
 
@@ -66,11 +66,8 @@ public class AssignmentTest extends ApiBase {
         jpath = res.jsonPath();
         for (int s : resultList) {
             email = jpath.param("post", s).get("findAll{it.postId == post}.email");
-            for (String mail : email) {
-                //using apache common validator for validate emails
-                Assert.assertTrue(EmailValidator.getInstance().isValid(mail));
-            }
-
+            //validate email though Apache commons library. Using parallelStream to execute assertions faster
+            email.parallelStream().forEach(e -> Assert.assertTrue(EmailValidator.getInstance().isValid(e), e + " is an invalid Email"));
         }
 
     }
@@ -85,7 +82,7 @@ public class AssignmentTest extends ApiBase {
         jpath = res.jsonPath();
         Assert.assertEquals(res.getStatusCode(), 200);
         resultList = jpath.get("id");
-        Assert.assertFalse(resultList.isEmpty());
+        Assert.assertFalse(resultList.isEmpty(), "User doesn't created any photo albums");
 
 
     }
@@ -101,7 +98,7 @@ public class AssignmentTest extends ApiBase {
         for (int albumID : resultList) {
             photoID = jpath.param("albumID", albumID).get("findAll{it.albumId == albumID}.id");
 
-            Assert.assertFalse(photoID.isEmpty());
+            Assert.assertFalse(photoID.isEmpty(), "User doesn't uploaded any photos");
         }
 
 
@@ -114,16 +111,15 @@ public class AssignmentTest extends ApiBase {
         url = baseUrl + "/photos";
         res = apiBase.doGetRequest(url);
         jpath = res.jsonPath();
-        System.out.println(photoID);
+
+        //adding all the image urls to the imageUrl list
         for (int picID : photoID) {
             imageUrl.add(jpath.param("picID", picID).getString("find{it.id == picID}.url"));
         }
-        imageUrl.parallelStream().forEach(e -> Assert.assertEquals(apiBase.doGetRequest(e).getStatusCode(), 200));
+
+        imageUrl.parallelStream().forEach(e -> Assert.assertEquals(apiBase.doGetRequest(e).getStatusCode(), 200, "broken url " + e));
 
     }
-
-
-    //validate for title and body
 
 
 }

@@ -17,7 +17,7 @@ install scoop package manager for windows)
 
 Note - For mac please refer this document to configure
 
-## Running the Tests
+## Running the tests
 
 This is a Maven project. The tests can be executed from the command line using `mvn clean test`
 

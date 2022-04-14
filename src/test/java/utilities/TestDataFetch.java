@@ -1,11 +1,11 @@
-package Utilities;
+package utilities;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
 public class TestDataFetch {
+
 
     public static String getTestData(String value){
         FileInputStream fileInputStream;
@@ -14,8 +14,6 @@ public class TestDataFetch {
             Properties prop = new Properties();
             prop.load(fileInputStream);
             return prop.getProperty(value);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e){
             e.printStackTrace();
         }
