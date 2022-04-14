@@ -36,3 +36,6 @@ the tests)
 
 ## Sample Test result
 
+<img src="https://i.ibb.co/2kFTH4J/tr.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
