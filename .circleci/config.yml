@@ -13,7 +13,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - allure/install:
-          version: '2.17.2' 
+          version: 2.13.1 
   report-gen-job:
     docker:
       # replace with your preferred image
