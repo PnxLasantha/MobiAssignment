@@ -34,7 +34,7 @@ public class AssignmentTest extends ApiBase {
         res = apiBase.doGetRequest(url);
         jpath = res.jsonPath();
 
-        //fetching user id of delphine
+        //fetching user id of Delphine
         userID = jpath.param("userName", userName).get("find{it.username == userName}.id");
         Assert.assertEquals(res.getStatusCode(), 200);
         Assert.assertNotNull(userID, userName + " not found");
@@ -42,7 +42,7 @@ public class AssignmentTest extends ApiBase {
     }
 
     @Test(dependsOnMethods = {"getUserDataTest"}, testName = "Get user posts by user id")
-    @Description("Get all the post from thee user Delp")
+    @Description("Get all the post from thee user Delphine")
     public void getPostsCreatedByUserTest() {
         lifecycle.updateTestCase(testResult -> testResult.setName("Get user posts by user id"));
 
@@ -73,6 +73,7 @@ public class AssignmentTest extends ApiBase {
     }
 
     @Test(description = "Verify user created photo albums", dependsOnMethods = {"getUserDataTest"})
+    @Description("Verify user created photo albums")
     public void getPhotoAlbumDetailsTest() {
 
         lifecycle.updateTestCase(testResult -> testResult.setName("Verify user created photo albums"));
@@ -87,9 +88,10 @@ public class AssignmentTest extends ApiBase {
 
     }
 
-    @Test(description = "Verify albums contains atleast one photo", dependsOnMethods = {"getPhotoAlbumDetailsTest"})
+    @Test(description = "Verify albums contains at least one photo", dependsOnMethods = {"getPhotoAlbumDetailsTest"})
+    @Description("Verify albums contains at least one photo")
     public void getUseUploadedPhotos() {
-        lifecycle.updateTestCase(testResult -> testResult.setName("Verify albums contains atleast one photo"));
+        lifecycle.updateTestCase(testResult -> testResult.setName("Verify albums contains at least one photo"));
 
         url = baseUrl + "/photos";
         res = apiBase.doGetRequest(url);
@@ -104,7 +106,8 @@ public class AssignmentTest extends ApiBase {
 
     }
 
-    @Test(description = "Verfiy Broken  urls", dependsOnMethods = {"getUseUploadedPhotos",})
+    @Test(description = "Verify Broken urls", dependsOnMethods = {"getUseUploadedPhotos",})
+    @Description("Verify Broken urls")
     public void verifyBrokenThumbnailLinks() {
         lifecycle.updateTestCase(testResult -> testResult.setName("Verify broken urls "));
         List<String> imageUrl = new ArrayList<>();
