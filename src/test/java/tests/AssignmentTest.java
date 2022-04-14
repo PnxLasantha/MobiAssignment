@@ -24,10 +24,10 @@ public class AssignmentTest extends ApiBase {
     AllureLifecycle lifecycle = Allure.getLifecycle();
 
 
-    @Test(description = "Get user details")
-    @Description("Get User ID")
+    @Test(testName = "Get user details")
+    @Description("Get User ID") //this is used in allure reports test description
     public void getUserDataTest() {
-        //setting up different name for allure report
+        //setting up different test name for allure report
         lifecycle.updateTestCase(testResult -> testResult.setName("Get user details"));
 
         url = baseUrl + "/users";
@@ -36,7 +36,7 @@ public class AssignmentTest extends ApiBase {
 
         //fetching user id of Delphine
         userID = jpath.param("userName", userName).get("find{it.username == userName}.id");
-        Assert.assertEquals(res.getStatusCode(), 200);
+        Assert.assertEquals(res.getStatusCode(), 200, "Users route is failing");
         Assert.assertNotNull(userID, userName + " not found");
 
     }
@@ -48,13 +48,14 @@ public class AssignmentTest extends ApiBase {
 
         url = baseUrl + "/posts";
         res = apiBase.doGetRequest(url);
+        Assert.assertEquals(res.getStatusCode(), 200, "Posts route is failing");
         jpath = res.jsonPath();
         resultList = jpath.param("userID", userID).get("findAll{it.userId == userID}.id");
         Assert.assertFalse(resultList.isEmpty(), "User doesn't created any posts");
 
     }
 
-    @Test(dependsOnMethods = {"getPostsCreatedByUserTest"})
+    @Test(testName = "Validate email address", dependsOnMethods = {"getPostsCreatedByUserTest"})
     @Description("Validate email address")
     public void getPostedCommentsAndValidateEmailTest() {
         List<String> email;
@@ -62,7 +63,7 @@ public class AssignmentTest extends ApiBase {
 
         url = baseUrl + "/comments";
         res = apiBase.doGetRequest(url);
-        Assert.assertEquals(res.getStatusCode(), 200);
+        Assert.assertEquals(res.getStatusCode(), 200, "Comments route is failing");
         jpath = res.jsonPath();
         for (int s : resultList) {
             email = jpath.param("post", s).get("findAll{it.postId == post}.email");
@@ -72,7 +73,7 @@ public class AssignmentTest extends ApiBase {
 
     }
 
-    @Test(description = "Verify user created photo albums", dependsOnMethods = {"getUserDataTest"})
+    @Test(testName = "Verify user created photo albums", dependsOnMethods = {"getUserDataTest"})
     @Description("Verify user created photo albums")
     public void getPhotoAlbumDetailsTest() {
 
@@ -81,14 +82,14 @@ public class AssignmentTest extends ApiBase {
         url = baseUrl + "/albums?userId=" + userID;
         res = apiBase.doGetRequest(url);
         jpath = res.jsonPath();
-        Assert.assertEquals(res.getStatusCode(), 200);
+        Assert.assertEquals(res.getStatusCode(), 200, "Albums route is failing");
         resultList = jpath.get("id");
         Assert.assertFalse(resultList.isEmpty(), "User doesn't created any photo albums");
 
 
     }
 
-    @Test(description = "Verify albums contains at least one photo", dependsOnMethods = {"getPhotoAlbumDetailsTest"})
+    @Test(testName = "Verify albums contains at least one photo", dependsOnMethods = {"getPhotoAlbumDetailsTest"})
     @Description("Verify albums contains at least one photo")
     public void getUseUploadedPhotos() {
         lifecycle.updateTestCase(testResult -> testResult.setName("Verify albums contains at least one photo"));
@@ -106,10 +107,10 @@ public class AssignmentTest extends ApiBase {
 
     }
 
-    @Test(description = "Verify Broken urls", dependsOnMethods = {"getUseUploadedPhotos",})
-    @Description("Verify Broken urls")
-    public void verifyBrokenThumbnailLinks() {
-        lifecycle.updateTestCase(testResult -> testResult.setName("Verify broken urls "));
+    @Test(description = "Verify Broken photo urls", dependsOnMethods = {"getUseUploadedPhotos",}, testName = "Verify Broken photo urls")
+    @Description("Verify Broken photo urls")
+    public void verifyBrokenPhotolLinks() {
+        lifecycle.updateTestCase(testResult -> testResult.setName("Verify broken photo urls "));
         List<String> imageUrl = new ArrayList<>();
         url = baseUrl + "/photos";
         res = apiBase.doGetRequest(url);
