@@ -15,14 +15,14 @@ install scoop package manager for windows)
 
 3.Verify allure installation `allure --version`
 
-Note - For mac please refer this document to configure
+Note - For mac please refer this [document](https://docs.qameta.io/allure/) to configure
 
 ## Running the tests
 
-This is a Maven project. The tests can be executed from the command line using `mvn clean test`
+This is a Maven project. The tests can be executed from the command line using `mvn clean test -DsuiteXmlFile=testSuits/Assignment.xml`
 
 Execute the following command in the terminal to generate the
-reports `allure serve <location of the allure-results folder>` (This allure-results folder is created after executing
+reports `allure serve <location of the allure-results folder>`Eg: `allure serve "C:\Assignment\allure-results"` (This allure-results folder is created in the project after executing
 the tests)
 
 ## Tools used
@@ -36,3 +36,6 @@ the tests)
 
 ## Sample Test result
 
+<img src="https://i.ibb.co/2kFTH4J/tr.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
