@@ -22,7 +22,7 @@ Note - For mac please refer this [document](https://docs.qameta.io/allure/) to c
 This is a Maven project. The tests can be executed from the command line using `mvn clean test -DsuiteXmlFile=testSuits/Assignment.xml`
 
 Execute the following command in the terminal to generate the
-reports `allure serve <location of the allure-results folder>` (This allure-results folder is created after executing
+reports `allure serve <location of the allure-results folder>`Eg: `allure serve "C:\Assignment\allure-results"` (This allure-results folder is created in the project after executing
 the tests)
 
 ## Tools used
