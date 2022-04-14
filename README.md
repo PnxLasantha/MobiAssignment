@@ -1,10 +1,9 @@
-# MobiAssignment [![CircleCI](https://circleci.com/gh/PnxLasantha/MobiAssignment/tree/master.svg?style=svg&circle-token=1d3b561ce32b809871b71e2f15211b8e284a8047)](https://circleci.com/gh/PnxLasantha/MobiAssignment/tree/master)
+# Mobiquity Assignment [![CircleCI](https://circleci.com/gh/PnxLasantha/MobiAssignment/tree/master.svg?style=svg&circle-token=1d3b561ce32b809871b71e2f15211b8e284a8047)](https://circleci.com/gh/PnxLasantha/MobiAssignment/tree/master)
 
-MobiQuity Assignment
 
 ## Configuring Allure Reports
 
-This is not necessery to run the automation.This section is only need to generate and view ther allure reports
+This is not necessery to run the automation.This section is only need to generate and view allure reports locally.
 
 ### Windows
 
