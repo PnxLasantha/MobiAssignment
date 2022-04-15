@@ -33,8 +33,26 @@ the tests)
 - Json - Validate Jason schema Version 20220320
 - Commons Validator - Validate emails Version 1.7
 
-## Sample Test result
+## Framework Structure
+
+<img src="https://i.ibb.co/P5xCLh9/ps.png"
+alt="Markdown Monster icon"
+style="float: left; margin-right: 10px;" />
+
+**base**</br>  This package contains all the base classes. base class has all the test data mapped to strings.   
+**functionalbase** </br> This package contain the functional layer of the framework.  
+**tests**</br> This package contains all the test classes.  
+**utilities**</br> This package is a helper package. this can contain anything that cannot go under any package
+mentioned above.
+
+***Test data***</br>
+Test data is managed in TestData.properties file in testData folder
+
+***Test Suits***</br>
+Test suits are in the testSuits folder
+
+## Sample Test results
 
 <img src="https://i.ibb.co/2kFTH4J/tr.png"
-     alt="Markdown Monster icon"
-     style="float: left; margin-right: 10px;" />
+alt="Markdown Monster icon"
+style="float: left; margin-right: 10px;" />
