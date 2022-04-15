@@ -2,6 +2,8 @@
 
 Detailed Test plan is found in Mobiquity Quality Management Plan.pdf 
 
+[CircleCi](https://app.circleci.com/pipelines/github/PnxLasantha/MobiAssignment?branch=master)
+
 ## Configuring Allure Reports
 
 This is not necessery to run the automation.This section is only need to generate and view allure reports locally.
