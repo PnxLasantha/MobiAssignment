@@ -121,7 +121,7 @@ public class AssignmentTest extends ApiBase {
             imageUrl.add(jpath.param("picID", picID).getString("find{it.id == picID}.url"));
         }
 
-        imageUrl.parallelStream().forEach(e -> Assert.assertEquals(apiBase.doGetRequest(e).getStatusCode(), 200, "broken url " + e));
+        imageUrl.parallelStream().forEach(e -> Assert.assertEquals(apiBase.doGetRequest(e).getStatusCode(), 304, "broken url " + e));
 
     }
 
