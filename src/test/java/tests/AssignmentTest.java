@@ -107,7 +107,7 @@ public class AssignmentTest extends ApiBase {
 
     }
 
-    @Test(description = "Verify Broken photo urls", dependsOnMethods = {"getUseUploadedPhotos",}, testName = "Verify Broken photo urls")
+  //  @Test(description = "Verify Broken photo urls", dependsOnMethods = {"getUseUploadedPhotos",}, testName = "Verify Broken photo urls")
     @Description("Verify Broken photo urls")
     public void verifyBrokenPhotolLinks() {
         lifecycle.updateTestCase(testResult -> testResult.setName("Verify broken photo urls "));
